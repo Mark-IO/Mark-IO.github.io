@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* Navigation Menu - Background */
+.navigation {
+  /* critical sizing and position styles */
+  width: 20%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  
+  /* non-critical appearance styles */
+  list-style: none;
+  background: #111;
+}
+
+/* Navigation Menu - List items */
+.nav-item {
+  /* non-critical appearance styles */
+  width: 100%;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #000;
+}
+
+.nav-item a {
+  /* non-critical appearance styles */
+  display: block;
+  padding: 1em;
+  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);
+  color: white;
+  font-size: 1.2em;
+  text-decoration: none;
+  transition: color 0.2s, background 0.5s;
+}
+
+.nav-item a:hover {
+  color: #3844c7;
+  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(20,20,75,0.65) 100%);
+}
+
+.nav-item a.active {
+  color: 222222;
+  font-weight: bold;
+  background: linear-gradient(135deg, rgba(0,0,75,.25) 0%,rgba(10,10,225,0.75) 100%);
+}
+
+
+/* Nav Trigger */
+.nav-trigger {
+  /* critical styles - hide the checkbox input */
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+label[for="nav-trigger"] {
+  /* critical positioning styles */
+  position: fixed;
+  left: 15px; top: 15px;
+  z-index: 2;
+  
+  /* non-critical apperance styles */
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+  background-size: contain;
+}
+
+/* Make the Magic Happen */
+.nav-trigger + label, .content {
+  transition: left 0.2s;
+}
+
+.nav-trigger:checked + label {
+  left: 22%;
+}
+
+.nav-trigger:checked ~ .content {
+  margin-left: 20%;
+  box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
+
+body 
+{
+	background-color: #181818;
+}
+
+
+h2
+{
+  font-size:200%;
+}
+h3, h4, p 
+{
+	font-size: 1.5em;
+	margin: 0 1em;
+}
+
+/* Site Wrapper - Everything that isn't navigation */
+.content {
+  background-color: #808090;
+  
+  position: relative;
+  top: 0;
+  bottom: 100%;
+  min-height: 100%;
+  left: 0;
+  z-index: 1;
+  text-align: center;
+  padding: 2em 0em;
+}
+
+/* Additional non-critical styles */
+div.content h1
+{
+	margin: auto;
+	width: 75%;
+	text-shadow:
+		-1px -1px 0 #FFF,
+		1px -1px 0 #FFF,
+		-1px 1px 0 #FFF,
+		1px 1px 0 #FFF; 
+	box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.5);
+	font: bold 400% arial;
+	background-color: #333;
+	margin-bottom: 2%;
+}
+div.content p
+{
+	color: #003399;
+	width: 75%;
+	margin: auto;
+}
+div.content h4
+{
+	width: 75%;
+	margin: auto;
+}
+
+code 
+{
+    padding: 2px;
+    background: #ddd;
+}
+
+
+div.post{
+	background-color: #111;
+    color: white;
+	width: 75%;
+	margin: auto;
+	margin-top: 5%;
+	
+}
+div.post a:link {
+    text-decoration: none;
+	color: #FFF;
+}
+div.post a:visited {
+	color: #FFF;
+    text-decoration: none;
+}
+div.post a:hover {
+    text-decoration: underline;
+}
+div.post a:active {
+    text-decoration: underline;
+}
+div.post p
+{
+	color: #000;
+	background-color: #FFF;
+	width: 100%;
+}
+div.post h2
+{
+	text-align:center;
+	color: #FFF;
+	text-shadow: 4px 4px rgba(0,0,0,0.5);
+}
+
+/* Micro reset */
+*,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0;}
+html, body { height: 100%; width: 100%; font-family: Helvetica, Arial, sans-serif; }
+
+
+@media screen and (max-width: 600px){
+	label {display: none;}
+    .nav-trigger:checked ~ .content {margin-left:0;}
+	
+	.navigation {
+        width:100%;
+        height:auto;
+        position:relative;
+		overflow.x:auto;
+    }
+	
+	.nav-item {
+        text-align: center;
+        padding: 15px;
+		width:100%;
+    }
+	.nav-item a{
+		float: none;
+	}
+}
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0.1)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* The Image */
+div.img img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+</style>
+<script type="text/javascript">
+
+    // Wait for the page to load first
+    window.onload = function() 
+	{
+
+        var allButton = document.getElementById("allLink");
+		var gameButton = document.getElementById("gameLink");
+		var artButton = document.getElementById("artLink");
+		var gameDevButton = document.getElementById("gameDevLink");
+		
+		var gameContent = document.getElementsByClassName("gameContent");
+		var artContent = document.getElementsByClassName("artContent");
+		var gameDevContent = document.getElementsByClassName("gameDevContent");
+
+        //Set code to run when the link is clicked
+        // by assigning a function to "onclick"
+        allButton.onclick = function() 
+		{
+			gameButton.classList.remove('active');
+			artButton.classList.remove('active');
+			gameDevButton.classList.remove('active');
+			this.classList.add('active');
+            //If you don't want the link to actually 
+            // redirect the browser to another page,
+            // "google.com" in our example here, then
+            // return false at the end of this block.
+            // Note that this also prevents event bubbling,
+            // which is probably what we want here, but won't 
+            // always be the case.
+			for(var i=0; i < gameContent.length; i++)
+			{
+				gameContent[i].style.display = "block";
+			}
+			for(var i=0; i < artContent.length; i++)
+			{
+				artContent[i].style.display = "block";
+			}
+			for(var i=0; i < gameDevContent.length; i++)
+			{
+				gameDevContent[i].style.display = "block";
+			}			
+			
+            return false;
+        }
+		gameButton.onclick = function()
+		{
+			allButton.classList.remove('active');
+			artButton.classList.remove('active');
+			gameDevButton.classList.remove('active');
+			this.classList.add('active');
+			for(var i=0; i < gameContent.length; i++)
+			{
+				gameContent[i].style.display = "block";
+			}
+			for(var i=0; i < artContent.length; i++)
+			{
+				artContent[i].style.display = "none";
+			}
+			for(var i=0; i < gameDevContent.length; i++)
+			{
+				gameDevContent[i].style.display = "none";
+			}			
+			return false;
+		}
+		
+		artButton.onclick = function()
+		{
+			gameButton.classList.remove('active');
+			allButton.classList.remove('active');
+			gameDevButton.classList.remove('active');
+			this.classList.add('active');
+			for(var i=0; i < gameContent.length; i++)
+			{
+				gameContent[i].style.display = "none";
+			}
+			for(var i=0; i < artContent.length; i++)
+			{
+				artContent[i].style.display = "block";
+			}
+			for(var i=0; i < gameDevContent.length; i++)
+			{
+				gameDevContent[i].style.display = "none";
+			}			
+			return false;
+		}
+		
+		gameDevButton.onclick = function()
+		{
+			gameButton.classList.remove('active');
+			artButton.classList.remove('active');
+			allButton.classList.remove('active');
+			this.classList.add('active');
+			for(var i=0; i < gameContent.length; i++)
+			{
+				gameContent[i].style.display = "none";
+			}
+			for(var i=0; i < artContent.length; i++)
+			{
+				artContent[i].style.display = "none";
+			}
+			for(var i=0; i < gameDevContent.length; i++)
+			{
+				gameDevContent[i].style.display = "block";
+			}			
+			return false;
+		}
+    }
+</script>
+
+</head>
+<body>
+<ul class="navigation">
+    <li class="nav-item"><a id="allLink" class = "active" href="javascript:void(0)">All Posts</a></li>
+    <li class="nav-item"><a id="gameLink" href="javascript:void(0)">Games</a></li>
+    <li class="nav-item"><a id="gameDevLink" href="javascript:void(0)">Game Development</a></li>
+    <li class="nav-item"><a id="artLink" href="javascript:void(0)">Art</a></li>
+    <li class="nav-item"><a href="mailto:Mark.io.dev@gmail.com">Contact</a></li>
+</ul>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger"></label>
+
+<div class="content">
+	<h1>Hi, I'm Mark.</h1>
+	<p>I'm currently working on a prototype about monkeys attempting to deduce the player's emotional state through in-game actions. <!--See more 
+		<b><i><a href="4-18-16-Monkey-Do,-Monkey-See.html" >here.</b></i></a></p> -->
+	<p>Not your thing? Well, I also draw sometimes, and talk about certain aspects of games, art, and game development.</p>
+	<p>	Make sure to use the menu to filter what you want.</p> 
+	<h4>I'm also trying to get this website running in a satisfactory state, so stay tuned.</h4>
+	<!--
+	<div class="post">
+		<div class="gameDevContent">
+		<!-- Image -->
+	<!--
+		<a href="4-18-16-Monkey-Do,-Monkey-See.html">
+			<img width="100%" height="20%" src="" class="attachment-post-thumbnail wp-post-image" alt=""></a>
+
+							
+		<!-- PostText -->
+	<!--
+		<div class="PostText">
+
+			<!-- Title -->
+	<!--
+			<h2><a href="4-18-16-Monkey-Do,-Monkey-See.html">Monkey Do, Monkey See</a></h2>
+
+			<!-- Content -->
+	<!--
+			<p>Capcom's Seth Killian Claims the following:
+			<br><br><i>"I can learn more about someone from watching 10 seconds of them playing Street Fighter than 10 hours of them watching an RPG."</i>
+			<br><br>Despite certain games having the potential for a form of unique player expression, it has been mostly unused when it comes to designing games.
+			<br><b>Until now.</b></p>
+			<h4><a href="4-18-16-Monkey-Do,-Monkey-See.html" class="more-link">Continued</a></h4>
+						
+		</div>
+		<!-- End of PostText -->
+	<!--
+		</div>
+	</div>
+	<!-- End of Post -->
+	<div class="post">
+		<div class="artContent">
+
+		<!-- Image -->					
+		<div class="img">
+			<img style="width:50%; height:40%;border:5px solid #FFF;" src="Uploads/DankestDungeonFelicia1.png" class="Darkest" alt=""></a>
+		</div>
+							
+		<!-- PostText -->
+		<div class="PostText">
+
+			<!-- Title -->
+			<h2>"How quickly the tide turns."</h2>
+
+			<!-- Content -->
+			<p></p> 
+			<p></p>
+						
+		</div>
+		<!-- End of PostText -->
+		</div>
+	</div>
+	<!-- End of Post -->
+	
+	
+</div>
+<!-- End of Content -->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">X</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+    modal.style.display = "none";
+}
+
+// Get all images and insert the clicked image inside the modal
+// Get the content of the image description and insert it inside the modal image caption
+var images = document.getElementsByTagName('img');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+var i;
+for (i = 0; i < images.length; i++) {
+   images[i].onclick = function(){
+       modal.style.display = "block";
+       modalImg.src = this.src;
+       modalImg.alt = this.alt;
+       captionText.innerHTML = this.nextElementSibling.innerHTML;
+   }
+}
+</script>
+</body>
+</html>
